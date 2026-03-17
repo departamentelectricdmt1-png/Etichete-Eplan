@@ -67,6 +67,45 @@ function stopPolling() {
   }
 }
 
+async function readApiPayload(response) {
+  const contentType = response.headers.get("content-type") || "";
+  const rawText = await response.text();
+
+  if (contentType.includes("application/json")) {
+    try {
+      return rawText ? JSON.parse(rawText) : {};
+    } catch {
+      if (!response.ok) {
+        throw new Error(`Server returned invalid JSON (${response.status}).`);
+      }
+
+      throw new Error("Server returned an invalid JSON response.");
+    }
+  }
+
+  if (!response.ok) {
+    const normalized = rawText.trim();
+
+    if (response.status === 404 && normalized.startsWith("Not Found")) {
+      throw new Error(
+        "Endpoint-ul API nu a fost găsit. Pe Render, această aplicație trebuie deployată ca Web Service, nu ca Static Site."
+      );
+    }
+
+    throw new Error(normalized || `Cererea a eșuat (${response.status}).`);
+  }
+
+  if (!rawText.trim()) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(rawText);
+  } catch {
+    throw new Error("Server returned a non-JSON response.");
+  }
+}
+
 function isFinalJobStatus(status) {
   return (
     status === "completed" ||
@@ -280,7 +319,7 @@ async function pollJob(jobId) {
 
   try {
     const response = await fetch(`/api/jobs/${jobId}`);
-    const job = await response.json();
+    const job = await readApiPayload(response);
 
     if (!response.ok) {
       throw new Error(job.error || "Nu s-a putut citi starea procesării.");
@@ -318,7 +357,7 @@ async function pollJob(jobId) {
 async function loadHealth() {
   try {
     const response = await fetch("/api/health");
-    const data = await response.json();
+    const data = await readApiPayload(response);
 
     if (!data.openaiConfigured) {
       setStatus("Aplicația nu este configurată complet pentru procesare.", "error");
@@ -361,7 +400,7 @@ uploadForm.addEventListener("submit", async (event) => {
       method: "POST",
       body: formData
     });
-    const payload = await response.json();
+    const payload = await readApiPayload(response);
 
     if (!response.ok) {
       throw new Error(payload.error || "Cererea nu a putut fi procesată.");
@@ -392,7 +431,7 @@ cancelButton?.addEventListener("click", async () => {
     const response = await fetch(`/api/jobs/${activeJobId}/cancel`, {
       method: "POST"
     });
-    const payload = await response.json();
+    const payload = await readApiPayload(response);
 
     if (!response.ok) {
       throw new Error(payload.error || "Nu s-a putut anula analiza.");

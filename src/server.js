@@ -346,6 +346,12 @@ app.get("/api/jobs/:jobId", (req, res) => {
   res.json(serializeJob(job));
 });
 
+app.use("/api", (_req, res) => {
+  res.status(404).json({
+    error: "API endpoint not found."
+  });
+});
+
 app.use(express.static(path.join(config.projectRoot, "public")));
 
 app.use((error, _req, res, _next) => {
