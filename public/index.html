@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Etichete EPLAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero hero-single">
+        <div class="hero-copy">
+          <p class="eyebrow">Prelucrare Excel EPLAN</p>
+          <h1>Etichete EPLAN</h1>
+          <p class="lead">
+            Încarcă un fișier `.xlsx` exportat din EPLAN și generează lista finală de etichete,
+            borne, cabluri și echipamente, gata pentru verificare și descărcare în Excel.
+          </p>
+          <div class="hero-tags" aria-label="Beneficii principale">
+            <span>Un singur fișier</span>
+            <span>Excel generat automat</span>
+            <span>Interfață pentru ingineri</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="card upload-card">
+          <div class="card-intro">
+            <h2>Încărcare fișier</h2>
+            <p>Aplicația acceptă un singur fișier `.xlsx` și procesează toate foile relevante.</p>
+          </div>
+          <form id="uploadForm">
+            <label class="field">
+              <span>Fișier Excel</span>
+              <input id="files" name="files" type="file" accept=".xlsx" required />
+            </label>
+
+            <div class="form-actions">
+              <button id="submitButton" type="submit">Generează etichete</button>
+              <button id="cancelButton" class="secondary-button danger-button" type="button" hidden disabled>
+                Anulează analiza
+              </button>
+            </div>
+          </form>
+          <p id="status" class="status idle">Selectează un fișier `.xlsx`.</p>
+        </section>
+
+        <div class="results-column">
+          <section class="card results-card">
+            <div class="section-heading">
+              <h2>Rezultate</h2>
+              <p>
+                După procesare vei primi fișierul Excel generat, pregătit pentru descărcare.
+              </p>
+            </div>
+            <div id="results" class="results-grid">
+              <div class="empty-state">Nu există fișiere procesate încă.</div>
+            </div>
+          </section>
+
+          <section class="card panda-card panda-panel" data-panda-state="idle">
+            <div class="panda-card-header">
+              <span id="pandaBadge" class="panda-badge idle">În așteptare</span>
+            </div>
+
+            <div class="panda-card-layout">
+              <div class="panda-stage" aria-hidden="true">
+                <svg class="panda-illustration" viewBox="0 0 760 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="sceneSky" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#345341" />
+                      <stop offset="45%" stop-color="#224033" />
+                      <stop offset="100%" stop-color="#13271f" />
+                    </linearGradient>
+                    <radialGradient id="mistGlow" cx="72%" cy="16%" r="42%">
+                      <stop offset="0%" stop-color="#ebf6d7" stop-opacity="0.74" />
+                      <stop offset="100%" stop-color="#ebf6d7" stop-opacity="0" />
+                    </radialGradient>
+                    <linearGradient id="furShade" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#1c262b" />
+                      <stop offset="100%" stop-color="#10171b" />
+                    </linearGradient>
+                    <linearGradient id="furWarm" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#fdf7ef" />
+                      <stop offset="100%" stop-color="#eadfce" />
+                    </linearGradient>
+                    <radialGradient id="bellyLight" cx="50%" cy="34%" r="70%">
+                      <stop offset="0%" stop-color="#fffdfa" />
+                      <stop offset="100%" stop-color="#e9dfcf" />
+                    </radialGradient>
+                    <linearGradient id="bowlBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d89d57" />
+                      <stop offset="100%" stop-color="#7d4421" />
+                    </linearGradient>
+                    <linearGradient id="bowlInner" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#f6d6a2" />
+                      <stop offset="100%" stop-color="#aa6a34" />
+                    </linearGradient>
+                    <radialGradient id="soupSurface" cx="40%" cy="35%" r="75%">
+                      <stop offset="0%" stop-color="#ffcf74" />
+                      <stop offset="60%" stop-color="#ee8d36" />
+                      <stop offset="100%" stop-color="#be5322" />
+                    </radialGradient>
+                    <linearGradient id="bambooSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#97d66f" />
+                      <stop offset="100%" stop-color="#466d41" />
+                    </linearGradient>
+                    <linearGradient id="leafSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#8ec860" />
+                      <stop offset="100%" stop-color="#376540" />
+                    </linearGradient>
+                    <linearGradient id="canopyShade" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#1b362a" />
+                      <stop offset="100%" stop-color="#0f221a" />
+                    </linearGradient>
+                  </defs>
+
+                  <rect width="760" height="360" rx="34" fill="url(#sceneSky)" />
+                  <ellipse class="jungle-mist mist-a" cx="592" cy="62" rx="148" ry="78" fill="url(#mistGlow)" />
+                  <ellipse class="jungle-mist mist-b" cx="176" cy="92" rx="128" ry="56" fill="#d6f1cf" opacity="0.08" />
+
+                  <path class="jungle-canopy" d="M0 0H760V88C724 70 676 70 630 84C594 95 558 103 514 96C470 89 430 70 374 72C322 74 280 98 228 102C166 106 122 70 62 62C40 58 18 58 0 60Z" fill="url(#canopyShade)" />
+                  <path class="jungle-mid" d="M0 178C92 124 176 124 260 158C314 180 362 194 430 186C488 180 530 154 592 146C654 138 710 154 760 186V360H0Z" fill="#274333" opacity="0.66" />
+                  <path class="jungle-floor-back" d="M0 290C88 248 164 240 256 260C352 282 432 292 522 266C616 238 686 236 760 280V360H0Z" fill="#30513e" />
+                  <path class="jungle-floor-front" d="M0 324C140 284 260 284 386 320C514 356 628 352 760 304V360H0Z" fill="#1e382a" opacity="0.92" />
+
+                  <g class="vine-group">
+                    <path class="vine vine-a" d="M126 0C114 54 122 82 144 112C168 144 170 180 150 214" stroke="#658f50" stroke-width="6" fill="none" stroke-linecap="round" />
+                    <path class="vine vine-b" d="M614 0C624 52 616 86 594 118C568 154 562 186 574 214" stroke="#6f9c59" stroke-width="6" fill="none" stroke-linecap="round" />
+                  </g>
+
+                  <g class="scene-bamboo scene-bamboo-back">
+                    <rect x="78" y="106" width="24" height="178" rx="12" fill="url(#bambooSkin)" />
+                    <rect x="116" y="82" width="22" height="202" rx="11" fill="url(#bambooSkin)" />
+                    <rect x="146" y="118" width="18" height="166" rx="9" fill="url(#bambooSkin)" />
+                    <path d="M60 138C28 144 16 168 20 198C48 194 66 172 82 150Z" fill="url(#leafSkin)" />
+                    <path d="M92 182C116 182 138 162 148 136C120 136 100 146 86 166Z" fill="#6ca74f" />
+                    <path d="M124 104C154 100 180 84 198 58C166 56 136 68 120 92Z" fill="#82bd60" />
+                    <path d="M146 200C176 198 206 182 220 152C192 150 166 164 144 188Z" fill="#62934b" />
+                  </g>
+
+                  <g class="scene-bamboo scene-bamboo-front">
+                    <rect x="642" y="124" width="18" height="154" rx="9" fill="url(#bambooSkin)" opacity="0.84" />
+                    <rect x="670" y="92" width="22" height="186" rx="11" fill="url(#bambooSkin)" opacity="0.88" />
+                    <path d="M624 146C650 146 676 130 690 106C662 104 640 116 624 134Z" fill="url(#leafSkin)" opacity="0.92" />
+                    <path d="M662 186C690 184 712 170 726 146C698 144 674 154 658 176Z" fill="#78b75a" opacity="0.86" />
+                  </g>
+
+                  <g class="soup-group">
+                    <g class="soup-scale" transform="matrix(0.84 0 0 0.84 40 38)">
+                      <ellipse class="soup-shadow" cx="256" cy="292" rx="84" ry="22" fill="#0f1f18" opacity="0.34" />
+                      <path class="soup-bowl" d="M182 244H330C326 294 304 330 256 330C208 330 186 294 182 244Z" fill="url(#bowlBody)" />
+                      <ellipse class="soup-rim" cx="256" cy="244" rx="74" ry="20" fill="url(#bowlInner)" />
+                      <ellipse class="soup-surface" cx="256" cy="247" rx="62" ry="14" fill="url(#soupSurface)" />
+                      <ellipse class="soup-shine" cx="240" cy="242" rx="18" ry="6" fill="#fff5d8" opacity="0.34" />
+                      <g class="soup-toppings">
+                        <circle cx="226" cy="248" r="7" fill="#d97b2b" />
+                        <circle cx="252" cy="242" r="6" fill="#f1bf61" />
+                        <circle cx="286" cy="249" r="8" fill="#cf6c27" />
+                        <circle cx="274" cy="243" r="5" fill="#f8d57c" />
+                        <path d="M238 242C246 232 254 232 262 242C254 246 246 246 238 242Z" fill="#5f8d42" />
+                        <path d="M270 252C278 242 288 242 296 252C288 256 278 256 270 252Z" fill="#79a454" />
+                      </g>
+                      <path class="soup-spoon" d="M334 214C348 206 360 212 362 226C364 240 352 252 338 252C332 252 326 250 322 246L298 252L292 240L320 232C322 224 326 218 334 214Z" fill="#8d5f39" />
+                      <g class="steam-group">
+                        <path class="steam steam-a" d="M220 216C210 200 216 182 230 170" stroke="#fff4d8" stroke-width="5" stroke-linecap="round" fill="none" />
+                        <path class="steam steam-b" d="M252 210C244 194 252 176 266 162" stroke="#fff4d8" stroke-width="5" stroke-linecap="round" fill="none" />
+                        <path class="steam steam-c" d="M286 214C278 198 286 178 300 166" stroke="#fff4d8" stroke-width="5" stroke-linecap="round" fill="none" />
+                      </g>
+                    </g>
+                  </g>
+
+                  <g class="panda-character">
+                    <g class="panda-scale" transform="matrix(0.86 0 0 0.86 68 30)">
+                      <ellipse class="panda-shadow" cx="500" cy="300" rx="146" ry="30" fill="#102118" opacity="0.34" />
+
+                      <g class="panda-belly-group">
+                        <ellipse class="body-back" cx="504" cy="224" rx="116" ry="96" fill="url(#furShade)" />
+                        <ellipse class="belly" cx="504" cy="246" rx="78" ry="66" fill="url(#bellyLight)" />
+                        <ellipse class="belly-shadow" cx="518" cy="268" rx="58" ry="34" fill="#d8cbba" opacity="0.26" />
+                      </g>
+
+                      <ellipse class="leg-left" cx="442" cy="292" rx="42" ry="58" fill="url(#furShade)" />
+                      <ellipse class="leg-right" cx="566" cy="292" rx="42" ry="58" fill="url(#furShade)" />
+                      <ellipse class="paw-pad-left" cx="442" cy="308" rx="18" ry="12" fill="#0d1418" />
+                      <ellipse class="paw-pad-right" cx="566" cy="308" rx="18" ry="12" fill="#0d1418" />
+
+                      <path class="arm-left" d="M414 196C378 210 366 248 384 280C404 300 438 292 446 270C444 238 438 214 414 196Z" fill="url(#furShade)" />
+                      <path class="arm-right" d="M590 194C622 210 632 246 618 278C600 298 568 296 560 274C564 240 570 214 590 194Z" fill="url(#furShade)" />
+                      <ellipse class="paw-right" cx="580" cy="270" rx="24" ry="18" fill="#0f171b" />
+
+                      <circle class="ear-left" cx="440" cy="88" r="34" fill="url(#furShade)" />
+                      <circle class="ear-right" cx="564" cy="88" r="34" fill="url(#furShade)" />
+                      <circle class="ear-left-inner" cx="440" cy="88" r="18" fill="#26343b" />
+                      <circle class="ear-right-inner" cx="564" cy="88" r="18" fill="#26343b" />
+
+                      <g class="panda-head-group">
+                        <ellipse class="head" cx="504" cy="144" rx="94" ry="84" fill="url(#furWarm)" />
+                        <ellipse class="patch-left" cx="458" cy="140" rx="26" ry="35" transform="rotate(16 458 140)" fill="#162126" />
+                        <ellipse class="patch-right" cx="548" cy="140" rx="26" ry="35" transform="rotate(-16 548 140)" fill="#162126" />
+                        <ellipse class="eye-open-left" cx="458" cy="140" rx="8" ry="10" fill="#fbfcfd" />
+                        <ellipse class="eye-open-right" cx="548" cy="140" rx="8" ry="10" fill="#fbfcfd" />
+                        <circle class="pupil-left" cx="458" cy="142" r="4" fill="#11181d" />
+                        <circle class="pupil-right" cx="548" cy="142" r="4" fill="#11181d" />
+                        <path class="eye-happy-left" d="M446 140C454 130 462 130 470 140" stroke="#11181d" stroke-width="4" stroke-linecap="round" fill="none" />
+                        <path class="eye-happy-right" d="M536 140C544 130 552 130 560 140" stroke="#11181d" stroke-width="4" stroke-linecap="round" fill="none" />
+                        <ellipse class="snout" cx="504" cy="174" rx="34" ry="24" fill="#fffdfa" />
+                        <ellipse class="nose" cx="504" cy="162" rx="11" ry="8" fill="#161e23" />
+                        <path class="mouth-idle" d="M494 184C500 190 508 190 514 184" stroke="#161e23" stroke-width="4" stroke-linecap="round" fill="none" />
+                        <path class="mouth-chew" d="M492 184C500 190 510 190 518 184" stroke="#161e23" stroke-width="4" stroke-linecap="round" fill="none" />
+                        <path class="mouth-smile" d="M490 182C500 194 512 194 522 182" stroke="#161e23" stroke-width="4" stroke-linecap="round" fill="none" />
+                        <path class="mouth-error" d="M490 188C500 176 512 176 522 188" stroke="#161e23" stroke-width="4" stroke-linecap="round" fill="none" />
+                        <ellipse class="cheek-left" cx="464" cy="176" rx="10" ry="6" fill="#d49876" opacity="0.28" />
+                        <ellipse class="cheek-right" cx="542" cy="176" rx="10" ry="6" fill="#d49876" opacity="0.28" />
+                      </g>
+
+                      <g class="chew-bamboo">
+                        <path d="M418 294L503 199" stroke="#294c21" stroke-width="20" stroke-linecap="butt" opacity="0.26" />
+                        <path d="M418 294L503 199" stroke="url(#bambooSkin)" stroke-width="15" stroke-linecap="butt" />
+                        <path d="M422 290L499 203" stroke="#c2ed93" stroke-width="2.6" stroke-linecap="round" opacity="0.42" />
+                        <path d="M430 280L442 292" stroke="#5d8b43" stroke-width="5.8" stroke-linecap="round" />
+                        <path d="M454 252L466 264" stroke="#5d8b43" stroke-width="5.8" stroke-linecap="round" />
+                        <path d="M478 224L490 236" stroke="#5d8b43" stroke-width="5.4" stroke-linecap="round" />
+                        <path d="M414 276C402 271 395 259 400 249C414 253 424 264 414 276Z" fill="#82bf57" opacity="0.96" />
+                        <path d="M446 252C457 249 467 253 473 263C461 265 451 261 444 253Z" fill="#8fc866" opacity="0.82" />
+                      </g>
+
+                      <ellipse class="paw-left" cx="420" cy="270" rx="24" ry="18" fill="#0f171b" />
+
+                      <g class="crumbs">
+                        <circle cx="476" cy="192" r="3.5" fill="#a5c978" />
+                        <circle cx="462" cy="206" r="2.8" fill="#8cbf61" />
+                        <circle cx="484" cy="208" r="2.8" fill="#cf7a2d" />
+                      </g>
+
+                      <g class="sparkles">
+                        <path d="M614 120L620 134L634 140L620 146L614 160L608 146L594 140L608 134Z" fill="#f1e8b6" />
+                        <path d="M358 128L362 138L372 142L362 146L358 156L354 146L344 142L354 138Z" fill="#f6efd0" opacity="0.78" />
+                      </g>
+                    </g>
+                  </g>
+
+                  <g class="foreground-foliage">
+                    <path class="jungle-leaf leaf-left" d="M24 318C40 258 94 242 156 254C130 294 86 328 24 318Z" fill="#203d2d" opacity="0.9" />
+                    <path class="jungle-leaf leaf-right" d="M760 322C700 332 650 302 628 260C692 244 744 262 760 322Z" fill="#1c3427" opacity="0.9" />
+                  </g>
+                </svg>
+              </div>
+
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
